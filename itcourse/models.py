@@ -14,9 +14,8 @@ class Course(models.Model):
     category = models.ForeignKey(Category, related_name='courses', on_delete=models.PROTECT, null=True)
     logo = models.CharField(max_length=100)
 
-
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.description}'
 
 
 class Branch(models.Model):
@@ -25,8 +24,8 @@ class Branch(models.Model):
     address = models.CharField(max_length=100)
     course = models.ForeignKey(Course, related_name='branches', on_delete=models.CASCADE, null=True)
 
-    # def __str__(self):
-    #     return self.address
+    def __str__(self):
+        return f'{self.address}, {self.latitude}, {self.longitude}'
 
 class Contact(models.Model):
 
@@ -40,6 +39,6 @@ class Contact(models.Model):
     course = models.ForeignKey(Course, related_name='contacts', on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.value
+        return f'{self.value}'
 
 
